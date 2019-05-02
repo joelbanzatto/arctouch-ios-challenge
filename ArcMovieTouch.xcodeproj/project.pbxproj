@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84B3ADB05020161E1463DF2A /* Pods_ArcMovieTouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 702F6D49073A38DCC8368AED /* Pods_ArcMovieTouch.framework */; };
 		9F495E6F227B3FB200C75751 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F495E6E227B3FB200C75751 /* AppDelegate.swift */; };
 		9F495E71227B3FB200C75751 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F495E70227B3FB200C75751 /* ViewController.swift */; };
 		9F495E74227B3FB200C75751 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F495E72227B3FB200C75751 /* Main.storyboard */; };
@@ -15,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		40C474B6183457A745F9C613 /* Pods-ArcMovieTouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArcMovieTouch.debug.xcconfig"; path = "Target Support Files/Pods-ArcMovieTouch/Pods-ArcMovieTouch.debug.xcconfig"; sourceTree = "<group>"; };
+		702F6D49073A38DCC8368AED /* Pods_ArcMovieTouch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ArcMovieTouch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F495E6B227B3FB200C75751 /* ArcMovieTouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArcMovieTouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F495E6E227B3FB200C75751 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F495E70227B3FB200C75751 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +25,7 @@
 		9F495E75227B3FB400C75751 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F495E78227B3FB400C75751 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F495E7A227B3FB400C75751 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD627B837E409D09E5A37160 /* Pods-ArcMovieTouch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArcMovieTouch.release.xcconfig"; path = "Target Support Files/Pods-ArcMovieTouch/Pods-ArcMovieTouch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +33,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84B3ADB05020161E1463DF2A /* Pods_ArcMovieTouch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07326CE383CC112316337940 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				40C474B6183457A745F9C613 /* Pods-ArcMovieTouch.debug.xcconfig */,
+				DD627B837E409D09E5A37160 /* Pods-ArcMovieTouch.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		3A9622D3E3519C4744F8EFBE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				702F6D49073A38DCC8368AED /* Pods_ArcMovieTouch.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9F495E62227B3FB200C75751 = {
 			isa = PBXGroup;
 			children = (
 				9F495E6D227B3FB200C75751 /* ArcMovieTouch */,
 				9F495E6C227B3FB200C75751 /* Products */,
+				07326CE383CC112316337940 /* Pods */,
+				3A9622D3E3519C4744F8EFBE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,9 +96,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F495E7D227B3FB400C75751 /* Build configuration list for PBXNativeTarget "ArcMovieTouch" */;
 			buildPhases = (
+				48691022BE792CB2F4FC9010 /* [CP] Check Pods Manifest.lock */,
 				9F495E67227B3FB200C75751 /* Sources */,
 				9F495E68227B3FB200C75751 /* Frameworks */,
 				9F495E69227B3FB200C75751 /* Resources */,
+				E844EFA5A379C39A62450D05 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -129,6 +156,55 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		48691022BE792CB2F4FC9010 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ArcMovieTouch-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E844EFA5A379C39A62450D05 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ArcMovieTouch/Pods-ArcMovieTouch-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ArcMovieTouch/Pods-ArcMovieTouch-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9F495E67227B3FB200C75751 /* Sources */ = {
@@ -280,6 +356,7 @@
 		};
 		9F495E7E227B3FB400C75751 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 40C474B6183457A745F9C613 /* Pods-ArcMovieTouch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -298,6 +375,7 @@
 		};
 		9F495E7F227B3FB400C75751 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DD627B837E409D09E5A37160 /* Pods-ArcMovieTouch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
