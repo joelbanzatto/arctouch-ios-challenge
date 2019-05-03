@@ -25,18 +25,23 @@ class MoviesListViewController: UITableViewController {
     func fetchData(refresh: Bool = false, page: Int = 1) {
         isLoading = true
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        ApiClient.shared.fetchMovies(completion: { [unowned self] response, hasMore, isRefreshing, page in
-            self.apiResponse = response
+        ApiClient.shared.fetchMovies(page: page, forceRefresh: refresh, completion: { [unowned self] response, isRefreshing, page in
+            if isRefreshing {
+                self.apiResponse = response
+            } else {
+                var allResults = self.apiResponse?.results ?? []
+                allResults.append(contentsOf: response.results)
+                self.apiResponse = response
+                self.apiResponse?.results = allResults
+            }
         }, fail: { (error) in
             print(error ?? "no error description")
         }) { [unowned self] in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                self.tableView.reloadData()
-                self.endTableViewRefreshing()
-                self.refreshingActivity.stopAnimating()
-                self.isLoading = false
-            }
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            self.tableView.reloadData()
+            self.endTableViewRefreshing()
+            self.refreshingActivity.stopAnimating()
+            self.isLoading = false
         }
     }
 

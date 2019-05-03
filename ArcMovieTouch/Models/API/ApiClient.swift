@@ -2,7 +2,7 @@ import Foundation
 import Alamofire
 import AlamofireObjectMapper
 
-typealias ResponseBlock = (FetchMoviesResponse, Bool, Bool, Int) -> Void
+typealias ResponseBlock = (FetchMoviesResponse, Bool, Int) -> Void
 typealias ErrorBlock = (Error?) -> Void
 typealias FinishBlock = () -> Void
 
@@ -28,8 +28,7 @@ class ApiClient {
 
         Alamofire.request(URL).responseObject { (response: DataResponse<FetchMoviesResponse>) in
             if let response = response.result.value {
-                let hasMore = response.page <= response.totalPages && response.totalResults > 0
-                completion(response, forceRefresh, hasMore, response.page)
+                completion(response, forceRefresh, response.page)
             } else {
                 fail(response.result.error)
             }
