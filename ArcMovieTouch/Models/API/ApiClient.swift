@@ -20,7 +20,7 @@ class ApiClient {
                 queryString += "&\(key)=\(value)"
             }
         }
-        return "\(apiUrl)/\(endpoint)?key=\(apiKey)\(queryString)"
+        return "\(apiUrl)/\(endpoint)?api_key=\(apiKey)\(queryString)"
     }
 
     func fetchMovies(page: Int = 1, forceRefresh: Bool = false, completion: @escaping ResponseBlock, fail: @escaping ErrorBlock, finish: @escaping FinishBlock) {

@@ -20,6 +20,7 @@
 		9F78A348227B7B6E00C49256 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78A347227B7B6E00C49256 /* Genre.swift */; };
 		9F78A34A227B7BF400C49256 /* FetchMoviesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78A349227B7BF400C49256 /* FetchMoviesResponse.swift */; };
 		9F78A34C227B7FF500C49256 /* Launchscreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F78A34B227B7FF500C49256 /* Launchscreen.storyboard */; };
+		9F78A34F227C67B900C49256 /* UIImageView+Bluring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78A34E227C67B900C49256 /* UIImageView+Bluring.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		9F78A347227B7B6E00C49256 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		9F78A349227B7BF400C49256 /* FetchMoviesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMoviesResponse.swift; sourceTree = "<group>"; };
 		9F78A34B227B7FF500C49256 /* Launchscreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launchscreen.storyboard; sourceTree = "<group>"; };
+		9F78A34E227C67B900C49256 /* UIImageView+Bluring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Bluring.swift"; sourceTree = "<group>"; };
 		DD627B837E409D09E5A37160 /* Pods-ArcMovieTouch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArcMovieTouch.release.xcconfig"; path = "Target Support Files/Pods-ArcMovieTouch/Pods-ArcMovieTouch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,6 +94,7 @@
 		9F495E6D227B3FB200C75751 /* ArcMovieTouch */ = {
 			isa = PBXGroup;
 			children = (
+				9F78A34D227C67A200C49256 /* Extensions */,
 				9F78A337227B650A00C49256 /* Controllers */,
 				9F78A336227B64FD00C49256 /* Views */,
 				9F78A335227B64EC00C49256 /* Models */,
@@ -139,6 +142,14 @@
 				9F78A349227B7BF400C49256 /* FetchMoviesResponse.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		9F78A34D227C67A200C49256 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9F78A34E227C67B900C49256 /* UIImageView+Bluring.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,6 +282,7 @@
 				9F78A34A227B7BF400C49256 /* FetchMoviesResponse.swift in Sources */,
 				9F78A33D227B655900C49256 /* MovieDetailViewController.swift in Sources */,
 				9F78A342227B65AC00C49256 /* MovieCell.swift in Sources */,
+				9F78A34F227C67B900C49256 /* UIImageView+Bluring.swift in Sources */,
 				9F495E6F227B3FB200C75751 /* AppDelegate.swift in Sources */,
 				9F78A339227B652700C49256 /* Movie.swift in Sources */,
 				9F78A33B227B654D00C49256 /* MoviesListViewController.swift in Sources */,

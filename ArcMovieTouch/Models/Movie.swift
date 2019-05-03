@@ -27,7 +27,7 @@ class Movie: Mappable {
         backdropPath <- map["backdrop_path"]
         genres <- map["genres"]
         overview <- map["overview"]
-        releaseDate <- map["release_ate"]
+        releaseDate <- map["release_date"]
     }
 
     func getPoster(size: ImageSize) -> URL? {
