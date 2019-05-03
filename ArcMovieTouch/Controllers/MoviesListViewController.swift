@@ -45,6 +45,18 @@ class MoviesListViewController: UITableViewController {
         }
     }
 
+    func setupTableView() {
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.refreshControl = refreshControl
+        extendedLayoutIncludesOpaqueBars = true
+        tableView.register(UINib(nibName: MovieCell.cellIdentifier, bundle: nil), forCellReuseIdentifier: MovieCell.cellIdentifier)
+    }
+
+    func endTableViewRefreshing() {
+        refreshControl?.endRefreshing()
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let count = self.apiResponse?.results.count else { return 0 }
         return count
@@ -62,18 +74,6 @@ class MoviesListViewController: UITableViewController {
         return 160
     }
 
-    func setupTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.refreshControl = refreshControl
-        extendedLayoutIncludesOpaqueBars = true
-        tableView.register(UINib(nibName: MovieCell.cellIdentifier, bundle: nil), forCellReuseIdentifier: MovieCell.cellIdentifier)
-    }
-
-    func endTableViewRefreshing() {
-        refreshControl?.endRefreshing()
-    }
-
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let visibleAreaHeight = tableView.contentSize.height - tableView.bounds.height
@@ -82,6 +82,21 @@ class MoviesListViewController: UITableViewController {
             if offsetY >= visibleAreaHeight - 80 && response.hasMore && !isLoading {
                 refreshingActivity.startAnimating()
                 fetchData(refresh: false, page: response.page + 1)
+            }
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let movie = apiResponse?.results[indexPath.row] else { return }
+        performSegue(withIdentifier: "MovieDetailSegue", sender: movie)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if segue.identifier == "MovieDetailSegue" {
+            if let movie = sender as? Movie {
+                let vc = segue.destination as! MovieDetailViewController
+                vc.movie = movie
             }
         }
     }
