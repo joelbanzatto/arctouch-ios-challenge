@@ -8,5 +8,6 @@ target 'ArcMovieTouch' do
   # Pods for ArcMovieTouch
   pod 'Alamofire', '~> 4.8.2'
   pod 'Kingfisher', '~> 5.0'
+  pod 'AlamofireObjectMapper', '~> 5.2'
 
 end
