@@ -17,7 +17,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="KPc-wB-tC7">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.90980392160000001" green="0.33725490200000002" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -27,7 +26,7 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="01J-lp-oVM" kind="relationship" relationship="rootViewController" id="4vb-ie-uHi"/>
+                        <segue destination="sDE-k5-3jO" kind="relationship" relationship="rootViewController" id="kkO-No-PhQ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9NV-Pw-soU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -35,40 +34,37 @@
             <point key="canvasLocation" x="-813" y="375"/>
         </scene>
         <!--Upcoming Movies-->
-        <scene sceneID="EHf-IW-A2E">
+        <scene sceneID="Kim-x8-Qv1">
             <objects>
-                <viewController id="01J-lp-oVM" customClass="MoviesListViewController" customModule="ArcMovieTouch" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                <tableViewController id="sDE-k5-3jO" customClass="MoviesListViewController" customModule="ArcMovieTouch" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="44" sectionFooterHeight="28" id="A6w-7e-2mr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jlc-RL-HLp">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="722"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="jlc-RL-HLp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="G9n-IE-PCs"/>
-                            <constraint firstItem="jlc-RL-HLp" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Ox5-Ym-eXE"/>
-                            <constraint firstItem="jlc-RL-HLp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="PbU-fO-bto"/>
-                            <constraint firstItem="jlc-RL-HLp" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="xCL-bz-FkI"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Upcoming Movies" id="XZq-h4-pHb">
-                        <barButtonItem key="backBarButtonItem" title=" " id="uth-76-PyS"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <outlet property="dataSource" destination="sDE-k5-3jO" id="q8f-RU-h0v"/>
+                            <outlet property="delegate" destination="sDE-k5-3jO" id="2tz-Tk-oEH"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Upcoming Movies" id="lkv-rK-tb4">
+                        <barButtonItem key="backBarButtonItem" title=" " id="BAJ-dJ-R8Z"/>
                     </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="2kY-Sq-Q0X">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <action selector="fetchData" destination="sDE-k5-3jO" eventType="valueChanged" id="cqn-jP-tSu"/>
+                        </connections>
+                    </refreshControl>
                     <connections>
-                        <outlet property="tableView" destination="jlc-RL-HLp" id="GST-D3-t81"/>
-                        <segue destination="0fb-VL-lxN" kind="show" identifier="MovieDetailSegue" id="jj9-d7-ijq"/>
+                        <segue destination="0fb-VL-lxN" kind="show" identifier="MovieDetailSegue" id="akr-1y-44f"/>
                     </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J8v-BG-FlR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52.173913043478265" y="375"/>
+            <point key="canvasLocation" x="90" y="375"/>
         </scene>
         <!--Movie Detail View Controller-->
         <scene sceneID="9pq-Ad-T3z">
