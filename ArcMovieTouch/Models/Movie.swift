@@ -16,6 +16,12 @@ class Movie: Mappable {
     var overview: String = ""
     var releaseDate: String = ""
 
+    var genresText: String {
+        return genres?.map({ genre in
+            return genre.name
+        }).joined(separator: ", ") ?? "--"
+    }
+
     required init?(map: Map){
 
     }
