@@ -2,7 +2,11 @@ import UIKit
 
 class MoviesListViewController: UITableViewController {
 
-    private var apiResponse: FetchMoviewResponse?
+    @IBOutlet weak var noResultsLabel: UILabel!
+    @IBOutlet weak var refreshingActivity: UIActivityIndicatorView!
+
+    private var apiResponse: FetchMoviesResponse?
+    private var isLoading = false
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -19,6 +23,7 @@ class MoviesListViewController: UITableViewController {
     }
 
     func fetchData(refresh: Bool = false, page: Int = 1) {
+        isLoading = true
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         ApiClient.shared.fetchMovies(completion: { [unowned self] response, hasMore, isRefreshing, page in
             self.apiResponse = response
@@ -29,6 +34,8 @@ class MoviesListViewController: UITableViewController {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 self.tableView.reloadData()
                 self.endTableViewRefreshing()
+                self.refreshingActivity.stopAnimating()
+                self.isLoading = false
             }
         }
     }
@@ -60,5 +67,17 @@ class MoviesListViewController: UITableViewController {
 
     func endTableViewRefreshing() {
         refreshControl?.endRefreshing()
+    }
+
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let visibleAreaHeight = tableView.contentSize.height - tableView.bounds.height
+
+        if let response = apiResponse {
+            if offsetY >= visibleAreaHeight - 80 && response.hasMore && !isLoading {
+                refreshingActivity.startAnimating()
+                fetchData(refresh: false, page: response.page + 1)
+            }
+        }
     }
 }

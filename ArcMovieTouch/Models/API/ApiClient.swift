@@ -2,7 +2,7 @@ import Foundation
 import Alamofire
 import AlamofireObjectMapper
 
-typealias ResponseBlock = (FetchMoviewResponse, Bool, Bool, Int) -> Void
+typealias ResponseBlock = (FetchMoviesResponse, Bool, Bool, Int) -> Void
 typealias ErrorBlock = (Error?) -> Void
 typealias FinishBlock = () -> Void
 
@@ -26,7 +26,7 @@ class ApiClient {
     func fetchMovies(page: Int = 1, forceRefresh: Bool = false, completion: @escaping ResponseBlock, fail: @escaping ErrorBlock, finish: @escaping FinishBlock) {
         let URL = buildApiUrl(endpoint: "movie/upcoming", params: ["page": forceRefresh ? "1" : String(page)])
 
-        Alamofire.request(URL).responseObject { (response: DataResponse<FetchMoviewResponse>) in
+        Alamofire.request(URL).responseObject { (response: DataResponse<FetchMoviesResponse>) in
             if let response = response.result.value {
                 let hasMore = response.page <= response.totalPages && response.totalResults > 0
                 completion(response, forceRefresh, hasMore, response.page)

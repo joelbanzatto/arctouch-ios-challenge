@@ -1,7 +1,7 @@
 import Foundation
 import ObjectMapper
 
-class FetchMoviewResponse: Mappable {
+class FetchMoviesResponse: Mappable {
     var results: [Movie] = []
     var page: Int = 0
     var totalResults: Int = 0
@@ -9,6 +9,10 @@ class FetchMoviewResponse: Mappable {
 
     var overview: String = ""
     var releaseDate: String = ""
+
+    var hasMore: Bool {
+        return page < totalPages
+    }
 
     required init?(map: Map){
 

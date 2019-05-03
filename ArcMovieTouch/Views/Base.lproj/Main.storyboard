@@ -43,6 +43,10 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="9es-9h-Eii">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="37"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </activityIndicatorView>
                         <connections>
                             <outlet property="dataSource" destination="sDE-k5-3jO" id="q8f-RU-h0v"/>
                             <outlet property="delegate" destination="sDE-k5-3jO" id="2tz-Tk-oEH"/>
@@ -59,6 +63,7 @@
                         </connections>
                     </refreshControl>
                     <connections>
+                        <outlet property="refreshingActivity" destination="9es-9h-Eii" id="1V5-B0-T5N"/>
                         <segue destination="0fb-VL-lxN" kind="show" identifier="MovieDetailSegue" id="akr-1y-44f"/>
                     </connections>
                 </tableViewController>
