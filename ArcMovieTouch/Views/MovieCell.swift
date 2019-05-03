@@ -4,6 +4,13 @@ class MovieCell: UITableViewCell {
 
     public weak var movie: Movie!
 
+    static var cellIdentifier: String {
+        get {
+            let filePath = URL(string: #file)!.deletingPathExtension()
+            return filePath.lastPathComponent
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
