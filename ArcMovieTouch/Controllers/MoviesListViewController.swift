@@ -18,6 +18,11 @@ class MoviesListViewController: UITableViewController {
         fetchData()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = false
+    }
+
     @IBAction func fetchData() {
         fetchData(refresh: true, page: 1)
     }
