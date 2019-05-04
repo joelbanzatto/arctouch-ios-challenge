@@ -12,13 +12,14 @@ class Movie: Mappable {
     var posterPath: String?
     var backdropPath: String?
     var genres: [Genre]?
+    var genreIds: [Int] = []
 
     var overview: String = ""
     var releaseDate: String = ""
 
     var genresText: String {
         return genres?.map({ genre in
-            return genre.name
+            return genre.name ?? ""
         }).joined(separator: ", ") ?? "--"
     }
 
@@ -32,6 +33,7 @@ class Movie: Mappable {
         posterPath <- map["poster_path"]
         backdropPath <- map["backdrop_path"]
         genres <- map["genres"]
+        genreIds <- map["genre_ids"]
         overview <- map["overview"]
         releaseDate <- map["release_date"]
     }

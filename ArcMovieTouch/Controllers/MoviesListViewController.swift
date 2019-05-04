@@ -6,6 +6,7 @@ class MoviesListViewController: UITableViewController {
     @IBOutlet weak var refreshingActivity: UIActivityIndicatorView!
 
     private var apiResponse: FetchMoviesResponse?
+    private var genres: [Genre] = []
     private var isLoading = false
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -24,7 +25,17 @@ class MoviesListViewController: UITableViewController {
     }
 
     @IBAction func fetchData() {
-        fetchData(refresh: true, page: 1)
+        self.genres = []
+        self.apiResponse = FetchMoviesResponse.empty
+        updateState()
+
+        ApiClient.shared.fetchGenres(completion: { [unowned self] genres in
+            self.genres = genres
+        }, fail: { (error) in
+            print(error ?? "error with no description")
+        }) { [unowned self] in
+            self.fetchData(refresh: true, page: 1)
+        }
     }
 
     func fetchData(refresh: Bool = false, page: Int = 1) {
@@ -42,11 +53,8 @@ class MoviesListViewController: UITableViewController {
         }, fail: { (error) in
             print(error ?? "no error description")
         }) { [unowned self] in
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            self.tableView.reloadData()
-            self.endTableViewRefreshing()
-            self.refreshingActivity.stopAnimating()
-            self.isLoading = false
+            self.reduceGenders()
+            self.updateState()
         }
     }
 
@@ -58,8 +66,29 @@ class MoviesListViewController: UITableViewController {
         tableView.register(UINib(nibName: MovieCell.cellIdentifier, bundle: nil), forCellReuseIdentifier: MovieCell.cellIdentifier)
     }
 
+    func reduceGenders() {
+        guard let movies = self.apiResponse?.results else { return }
+        self.apiResponse?.results = movies.map { [unowned self] movie in
+            let movieGenres = movie.genreIds
+            movie.genres = self.genres.filter { g in
+                return movieGenres.firstIndex(where: { g2 in
+                    return g2 == g.identifier
+                }) != nil
+            }
+            return movie
+        }
+    }
+
     func endTableViewRefreshing() {
         refreshControl?.endRefreshing()
+    }
+
+    func updateState() {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        tableView.reloadData()
+        endTableViewRefreshing()
+        refreshingActivity.stopAnimating()
+        isLoading = false
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

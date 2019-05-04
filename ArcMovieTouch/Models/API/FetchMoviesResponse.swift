@@ -2,6 +2,8 @@ import Foundation
 import ObjectMapper
 
 class FetchMoviesResponse: Mappable {
+    static var empty = FetchMoviesResponse(JSON: [:])
+    
     var results: [Movie] = []
     var page: Int = 0
     var totalResults: Int = 0

@@ -17,7 +17,6 @@ class MovieCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
         posterImageView.layer.shadowColor = UIColor.black.cgColor
         posterImageView.layer.shadowRadius = 8
         posterImageView.layer.shadowOpacity = 0.7
@@ -29,6 +28,7 @@ class MovieCell: UITableViewCell {
         posterImageView.kf.setImage(with: movie.getPoster(size: .sd))
         titleLabel.text = movie.title
         releaseDateLabel.text = movie.releaseDate
+        genreLabel.text = movie.genresText
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
