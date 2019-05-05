@@ -27,7 +27,7 @@ class MovieCell: UITableViewCell {
         backdropImageView.kf.setImage(with: movie.getBackdrop(size: .sd))
         posterImageView.kf.setImage(with: movie.getPoster(size: .sd))
         titleLabel.text = movie.title
-        releaseDateLabel.text = movie.releaseDate
+        releaseDateLabel.text = "Release at \(movie.releaseDate.dateFormat())"
         genreLabel.text = movie.genresText
     }
 

@@ -19,14 +19,30 @@
                 <rect key="frame" x="0.0" y="0.0" width="415" height="159.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a8X-lH-qdr" userLabel="Backdrop Image">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8X-lH-qdr" userLabel="Backdrop Image">
                         <rect key="frame" x="0.0" y="0.0" width="415" height="159.5"/>
                     </imageView>
-                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jXD-Hj-g5m">
+                    <visualEffectView opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jXD-Hj-g5m">
                         <rect key="frame" x="0.0" y="0.0" width="415" height="159.5"/>
                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="2mG-lU-21t">
                             <rect key="frame" x="0.0" y="0.0" width="415" height="159.5"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar" translatesAutoresizingMaskIntoConstraints="NO" id="P0p-nE-DfE">
+                                    <rect key="frame" x="113" y="125" width="17" height="17"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="17" id="2cg-By-lDr"/>
+                                        <constraint firstAttribute="height" constant="17" id="w9E-MF-XtF"/>
+                                    </constraints>
+                                </imageView>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="dbp-rN-IsC">
+                                    <rect key="frame" x="113" y="100.5" width="17" height="17"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="17" id="N2F-mw-2af"/>
+                                        <constraint firstAttribute="height" constant="17" id="kfs-HX-UV6"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
                         </view>
                         <blurEffect style="dark"/>
                     </visualEffectView>
@@ -36,9 +52,10 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="85" id="950-z0-5q3"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZGm-BK-ooS"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HXP-dl-dSU">
-                        <rect key="frame" x="113" y="73" width="282" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HXP-dl-dSU">
+                        <rect key="frame" x="113" y="69.5" width="282" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="Owm-Wi-IUR"/>
                         </constraints>
@@ -47,40 +64,47 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Release Date: 2019-10-10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbt-xp-UxW">
-                        <rect key="frame" x="113" y="106" width="282" height="16"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <rect key="frame" x="134" y="127.5" width="261" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre: Comedy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="alK-Yl-T0B">
-                        <rect key="frame" x="113" y="126" width="282" height="16"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre: Comedy" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="alK-Yl-T0B">
+                        <rect key="frame" x="134" y="100.5" width="261" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="sHw-b3-YaZ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
+                    <constraint firstItem="dbp-rN-IsC" firstAttribute="leading" secondItem="qSP-wJ-cAt" secondAttribute="trailing" constant="8" id="2sM-rh-Vf9"/>
                     <constraint firstItem="a8X-lH-qdr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="3zT-b8-Rgm"/>
+                    <constraint firstItem="qbt-xp-UxW" firstAttribute="bottom" secondItem="qSP-wJ-cAt" secondAttribute="bottom" id="5cf-rw-scP"/>
                     <constraint firstAttribute="trailing" secondItem="alK-Yl-T0B" secondAttribute="trailing" constant="20" id="79m-KL-bKa"/>
                     <constraint firstItem="HXP-dl-dSU" firstAttribute="leading" secondItem="qSP-wJ-cAt" secondAttribute="trailing" constant="8" id="79n-a8-58I"/>
                     <constraint firstItem="jXD-Hj-g5m" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="8ll-K3-Oa0"/>
                     <constraint firstItem="a8X-lH-qdr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="AhJ-rO-u75"/>
                     <constraint firstItem="qSP-wJ-cAt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="Aoc-cm-diZ"/>
-                    <constraint firstItem="qbt-xp-UxW" firstAttribute="top" secondItem="HXP-dl-dSU" secondAttribute="bottom" constant="12" id="CGk-wy-BrG"/>
-                    <constraint firstItem="alK-Yl-T0B" firstAttribute="leading" secondItem="qSP-wJ-cAt" secondAttribute="trailing" constant="8" id="Gmy-nq-ChC"/>
                     <constraint firstAttribute="trailing" secondItem="HXP-dl-dSU" secondAttribute="trailing" constant="20" id="KUr-Ti-Eex"/>
-                    <constraint firstItem="alK-Yl-T0B" firstAttribute="bottom" secondItem="qSP-wJ-cAt" secondAttribute="bottom" id="Y67-xm-QnI"/>
+                    <constraint firstItem="alK-Yl-T0B" firstAttribute="leading" secondItem="dbp-rN-IsC" secondAttribute="trailing" constant="4" id="LzI-MN-TZN"/>
                     <constraint firstItem="jXD-Hj-g5m" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="b0b-93-YP3"/>
+                    <constraint firstItem="alK-Yl-T0B" firstAttribute="top" secondItem="HXP-dl-dSU" secondAttribute="bottom" constant="10" id="cXn-5M-PiZ"/>
                     <constraint firstAttribute="bottom" secondItem="qSP-wJ-cAt" secondAttribute="bottom" constant="17.5" id="e7c-ts-MzR"/>
                     <constraint firstAttribute="bottom" secondItem="a8X-lH-qdr" secondAttribute="bottom" id="fk7-l3-qmc"/>
-                    <constraint firstItem="qSP-wJ-cAt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="ht3-Xq-LsS"/>
+                    <constraint firstItem="P0p-nE-DfE" firstAttribute="bottom" secondItem="qbt-xp-UxW" secondAttribute="bottom" id="gqb-rk-4Pf"/>
+                    <constraint firstItem="qSP-wJ-cAt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="ht3-Xq-LsS"/>
+                    <constraint firstItem="qbt-xp-UxW" firstAttribute="leading" secondItem="P0p-nE-DfE" secondAttribute="trailing" constant="4" id="l4W-Fl-eNL"/>
                     <constraint firstAttribute="bottom" secondItem="jXD-Hj-g5m" secondAttribute="bottom" id="oMl-FR-vVL"/>
                     <constraint firstAttribute="trailing" secondItem="qbt-xp-UxW" secondAttribute="trailing" constant="20" id="pj0-p0-K6Y"/>
                     <constraint firstAttribute="trailing" secondItem="jXD-Hj-g5m" secondAttribute="trailing" id="rVL-Vm-fRC"/>
-                    <constraint firstItem="alK-Yl-T0B" firstAttribute="top" secondItem="qbt-xp-UxW" secondAttribute="bottom" constant="4" id="x1K-dP-z38"/>
+                    <constraint firstItem="dbp-rN-IsC" firstAttribute="top" secondItem="alK-Yl-T0B" secondAttribute="top" id="seD-4g-c6y"/>
+                    <constraint firstItem="qbt-xp-UxW" firstAttribute="top" secondItem="alK-Yl-T0B" secondAttribute="bottom" constant="10" id="wsN-WT-JWu"/>
+                    <constraint firstItem="P0p-nE-DfE" firstAttribute="leading" secondItem="qSP-wJ-cAt" secondAttribute="trailing" constant="8" id="xZz-wO-bhf"/>
                     <constraint firstAttribute="trailing" secondItem="a8X-lH-qdr" secondAttribute="trailing" id="yEt-63-ywI"/>
-                    <constraint firstItem="qbt-xp-UxW" firstAttribute="leading" secondItem="qSP-wJ-cAt" secondAttribute="trailing" constant="8" id="ztk-wm-oX4"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -94,4 +118,8 @@
             <point key="canvasLocation" x="206.52173913043481" y="190.84821428571428"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="calendar" width="22" height="22"/>
+        <image name="star" width="22" height="22"/>
+    </resources>
 </document>

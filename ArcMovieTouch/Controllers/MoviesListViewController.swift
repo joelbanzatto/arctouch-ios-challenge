@@ -25,10 +25,6 @@ class MoviesListViewController: UITableViewController {
     }
 
     @IBAction func fetchData() {
-        self.genres = []
-        self.apiResponse = FetchMoviesResponse.empty
-        updateState()
-
         ApiClient.shared.fetchGenres(completion: { [unowned self] genres in
             self.genres = genres
         }, fail: { (error) in

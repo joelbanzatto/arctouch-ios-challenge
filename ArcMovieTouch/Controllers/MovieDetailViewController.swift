@@ -49,7 +49,7 @@ class MovieDetailViewController: UIViewController {
         backdropImageView.kf.setImage(with: movie.getBackdrop(size: .hd))
         titleLabel.text = movie.title
         overviewLabel.text = movie.overview
-        releaseDateLabel.text = movie.releaseDate
+        releaseDateLabel.text = movie.releaseDate.dateFormat()
         genresLabel.text = movie.genresText
     }
 }
