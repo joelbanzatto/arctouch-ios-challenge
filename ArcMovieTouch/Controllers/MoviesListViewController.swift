@@ -1,13 +1,13 @@
 import UIKit
 
-class MoviesListViewController: UITableViewController {
+class MoviesListViewController: UITableViewController, UIAlertViewDelegate {
 
-    @IBOutlet weak var noResultsLabel: UILabel!
     @IBOutlet weak var refreshingActivity: UIActivityIndicatorView!
 
     private var apiResponse: FetchMoviesResponse?
     private var genres: [Genre] = []
     private var isLoading = false
+    public var searchTerm: String?
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -21,10 +21,11 @@ class MoviesListViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = false
+        setup()
     }
 
     @IBAction func fetchData() {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         ApiClient.shared.fetchGenres(completion: { [unowned self] genres in
             self.genres = genres
         }, fail: { (error) in
@@ -36,8 +37,7 @@ class MoviesListViewController: UITableViewController {
 
     func fetchData(refresh: Bool = false, page: Int = 1) {
         isLoading = true
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        ApiClient.shared.fetchMovies(page: page, forceRefresh: refresh, completion: { [unowned self] response, isRefreshing, page in
+        ApiClient.shared.fetchMovies(page: page, forceRefresh: refresh, keyword: searchTerm, completion: { [unowned self] response, isRefreshing, page in
             if isRefreshing {
                 self.apiResponse = response
             } else {
@@ -50,8 +50,23 @@ class MoviesListViewController: UITableViewController {
             print(error ?? "no error description")
         }) { [unowned self] in
             self.reduceGenders()
-            self.updateState()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.updateState()
+            }
         }
+    }
+
+    func setup() {
+        if (searchTerm ?? "").lengthOfBytes(using: .utf8) > 0 {
+            self.navigationItem.title = "Searching for \"\(searchTerm ?? "")\""
+            self.navigationItem.rightBarButtonItem = nil
+            self.navigationController?.navigationBar.prefersLargeTitles = false
+            navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), landscapeImagePhone: UIImage(named: "back"), style: .plain, target: self, action: #selector(goBack))
+        } else {
+            self.navigationItem.title = "Upcoming Movies"
+            self.navigationController?.navigationBar.prefersLargeTitles = true
+        }
+        navigationController?.isNavigationBarHidden = false
     }
 
     func setupTableView() {
@@ -79,12 +94,17 @@ class MoviesListViewController: UITableViewController {
         refreshControl?.endRefreshing()
     }
 
-    func updateState() {
+    func updateState(_ refreshing: Bool = false) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        tableView.reloadData()
         endTableViewRefreshing()
         refreshingActivity.stopAnimating()
         isLoading = false
+        tableView.reloadData()
+        tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 1), animated: false)
+    }
+
+    @objc func goBack() {
+        navigationController?.popViewController(animated: true)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -129,5 +149,29 @@ class MoviesListViewController: UITableViewController {
                 vc.movie = movie
             }
         }
+    }
+
+    @IBAction func searchButtonPressed() {
+        let alert = UIAlertController(title: "Search by movie title", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        alert.addTextField(configurationHandler: { [unowned self] textField in
+            textField.placeholder = "Type something like \"new job\"..."
+            textField.text = self.searchTerm ?? ""
+            textField.tintColor = .black
+        })
+        alert.addAction(UIAlertAction(title: "Search", style: .default, handler: { [unowned self] action in
+            if let name = alert.textFields?.first?.text, name.trimmingCharacters(in: .whitespacesAndNewlines).lengthOfBytes(using: .utf8) > 0 {
+                self.openSearchResultsScreen(name)
+            }
+        }))
+        alert.view.tintColor = .red
+        self.present(alert, animated: true)
+    }
+
+    func openSearchResultsScreen(_ query: String) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "MoviesListViewController") as! MoviesListViewController
+        vc.searchTerm = query
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

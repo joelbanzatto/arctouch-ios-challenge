@@ -5,7 +5,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var backdropImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var overviewLabel: UILabel!
+    @IBOutlet weak var overviewTextView: UITextView!
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var genresLabel: UILabel!
 
@@ -48,7 +48,7 @@ class MovieDetailViewController: UIViewController {
         posterImageView.kf.setImage(with: movie.getPoster(size: .hd))
         backdropImageView.kf.setImage(with: movie.getBackdrop(size: .hd))
         titleLabel.text = movie.title
-        overviewLabel.text = movie.overview
+        overviewTextView.text = movie.overview
         releaseDateLabel.text = movie.releaseDate.dateFormat()
         genresLabel.text = movie.genresText
     }

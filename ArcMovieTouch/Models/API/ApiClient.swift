@@ -23,8 +23,15 @@ class ApiClient {
         return "\(apiUrl)/\(endpoint)?api_key=\(apiKey)\(queryString)"
     }
 
-    func fetchMovies(page: Int = 1, forceRefresh: Bool = false, completion: @escaping ResponseBlock, fail: @escaping ErrorBlock, finish: @escaping FinishBlock) {
-        let URL = buildApiUrl(endpoint: "movie/upcoming", params: ["page": forceRefresh ? "1" : String(page)])
+    func fetchMovies(page: Int = 1, forceRefresh: Bool = false, keyword: String? = nil, completion: @escaping ResponseBlock, fail: @escaping ErrorBlock, finish: @escaping FinishBlock) {
+        let endpoint = keyword != nil ? "search/movie" : "movie/upcoming"
+        let URL = buildApiUrl(
+            endpoint: endpoint,
+            params: [
+                "page": forceRefresh ? "1" : String(page),
+                "query": keyword ?? ""
+            ]
+        )
         Alamofire.request(URL).responseObject { (response: DataResponse<FetchMoviesResponse>) in
             if let response = response.result.value {
                 completion(response, forceRefresh, response.page)
