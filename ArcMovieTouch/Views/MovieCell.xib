@@ -22,7 +22,7 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a8X-lH-qdr" userLabel="Backdrop Image">
                         <rect key="frame" x="0.0" y="0.0" width="415" height="159.5"/>
                     </imageView>
-                    <visualEffectView opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jXD-Hj-g5m">
+                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jXD-Hj-g5m">
                         <rect key="frame" x="0.0" y="0.0" width="415" height="159.5"/>
                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="2mG-lU-21t">
                             <rect key="frame" x="0.0" y="0.0" width="415" height="159.5"/>

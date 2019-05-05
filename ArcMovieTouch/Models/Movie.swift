@@ -19,7 +19,7 @@ class Movie: Mappable {
 
     var genresText: String {
         return genres?.map({ genre in
-            return genre.name ?? ""
+            return genre.name
         }).joined(separator: ", ") ?? "--"
     }
 
